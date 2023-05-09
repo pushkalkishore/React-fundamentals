@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
+import "./App.css";
+import React, { useState } from "react";
+
+//for loop in react
+
+// function App() {
+//   const user = [
+//     { name: "John", age: 22 },
+//     { name: "Peter", age: 23 },
+//     { name: "Mark", age: 24 },
+//   ];
+
+//   return (
+//     <div className="App">
+//       <h1>My React App</h1>
+//       {user.map((item, index) => (
+//         <Users data={item} />
+//       ))}
+//     </div>
+//   );
+// }
 
 function App() {
+  const inputRef = useRef(null);
+  const [data, setData] = useState(null);
+  function handleClick() {
+    console.log(inputRef.current.value);
+    setData(inputRef.current.value);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input ref={inputRef} type="text" id="message" name="message" />
+      <button onClick={handleClick}>Submit</button>
+      <h1>{data}</h1>
     </div>
   );
 }
